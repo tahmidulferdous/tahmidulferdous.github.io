@@ -7,25 +7,37 @@
    ========================================================================== */
 
 .sidebar {
-  -webkit-transform: translate3d(0, 0 , 0);
-          transform: translate3d(0, 0 , 0);
-
   @include clearfix();
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 
-  @media (orientation: portrait) {
-    margin-top: 1em;
+  // On mobile & tablet (< 1024px): in-flow block element that scrolls away naturally
+  position: static;
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  transform: none;
+
+  &.sticky {
+    @media screen and (max-width: 1023px) {
+      position: static !important;
+      float: none !important;
+      width: 100% !important;
+      top: auto !important;
+    }
   }
 
-  @media screen and (min-width: $sidebar-screen-min-width) {
-    height: 100vh;
-    overflow-y: auto;               // Add scrollbar if the sidebar is too long
-    position: fixed;
-    padding-top: $masthead-height;
-  }
-
-  @include breakpoint($large) {
-    @include span(2 of 12);
+  @media screen and (min-width: 1024px) {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 85px; // clears fixed masthead (70px) + margin
+    flex: 0 0 220px;
+    width: 220px;
+    max-width: 220px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    float: none;
+    margin: 0;
+    padding-top: 0;
     opacity: 1;
     -webkit-transition: opacity 0.2s ease-in-out;
             transition: opacity 0.2s ease-in-out;

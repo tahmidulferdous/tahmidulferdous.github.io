@@ -4,14 +4,18 @@
 
 .archive {
   margin-bottom: 2em;
+  width: 100%;
+  float: none;
+  margin-left: 0;
+  margin-right: 0;
 
-  @include breakpoint($medium) {
-    @include span(12 of 12);
-  }
-
-  @include breakpoint($large) {
-    @include span(10 of 12 last);
-    @include prefix(0.5 of 12);
+  @media screen and (min-width: 1024px) {
+    flex: 1 1 0%;
+    min-width: 0;
+    width: auto;
+    float: none;
+    margin: 0;
+    padding: 0;
   }
 
   a {

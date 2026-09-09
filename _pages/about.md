@@ -31,6 +31,16 @@ compute from a laptop with integrated graphics.
 
 [Download my CV](/files/CV_Tahmidul_Bin_Ferdous.pdf) · [ORCID 0009-0001-1459-4124](https://orcid.org/0009-0001-1459-4124) · tahmidul.ferdous.edu@gmail.com
 
+## Code and experiment logs
+
+Everything below is public, with the code as it ran, the metrics for every training run, and the
+figures those runs produced.
+
+- [lung-ct-data-leakage-study](https://github.com/tahmidulferdous/lung-ct-data-leakage-study) —
+  the thesis: 188 runs across nine experiments, including the generative augmentation work.
+- [ml-research-log](https://github.com/tahmidulferdous/ml-research-log) — the wider record: 250
+  tracked runs across 14 projects, plus the Kaggle notebooks behind them.
+
 ## Research interests
 
 - Evaluation validity, benchmark contamination, and measurement integrity in machine learning

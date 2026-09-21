@@ -9,7 +9,7 @@ redirect_from:
 
 I recently completed a BSc in Computer Science and Engineering at International Islamic University
 Chittagong, Bangladesh, where my undergraduate thesis audited data leakage in deep learning models
-for lung cancer CT classification. I am currently a research intern at EliteLab, and I am applying for PhD study in the United States for Fall 2027 entry.
+for lung cancer CT classification. I am currently a student researcher at EliteLab, and I am applying for PhD study in the United States for Fall 2027 entry.
 
 My work is about whether machine learning evaluations measure what they claim to measure. My
 thesis took a widely used lung cancer CT benchmark and showed that a substantial part of its

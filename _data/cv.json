@@ -1,14 +1,14 @@
 {
   "basics": {
-    "name": "Your Sidebar Name",
-    "email": "none@example.org",
+    "name": "Tahmidul Bin Ferdous",
+    "email": "tahmidul.ferdous.edu@gmail.com",
     "phone": "",
-    "website": "https://academicpages.github.io",
-    "summary": "Currently employed at Red Brick University. Short biography for the left-hand sidebar",
+    "website": "https://tahmidulferdous.github.io",
+    "summary": "Currently employed at International Islamic University Chittagong. CSE graduate working on whether machine learning evaluations measure what they claim to measure.",
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Earth",
+      "city": "Chittagong, Bangladesh",
       "countryCode": "US",
       "region": ""
     },
@@ -16,137 +16,97 @@
       {
         "network": "Google Scholar",
         "username": "",
-        "url": "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+        "url": "https://scholar.google.com/citations?user=RqWBgxYAAAAJ"
       },
       {
         "network": "ORCID",
         "username": "",
-        "url": "https://orcid.org/yourorcidurl"
+        "url": "https://orcid.org/0009-0001-1459-4124"
       },
       {
         "network": "GitHub",
-        "username": "academicpages",
-        "url": "https://github.com/academicpages"
+        "username": "tahmidulferdous",
+        "url": "https://github.com/tahmidulferdous"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "tahmidul-kashfi",
+        "url": "https://www.linkedin.com/in/tahmidul-kashfi"
       }
     ]
   },
   "work": [],
-  "education": [
-    {
-      "institution": "GitHub University",
-      "area": "Ph.D in Version Control Theory",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2018",
-      "gpa": null,
-      "courses": []
-    },
-    {
-      "institution": "GitHub University",
-      "area": "M.S. in Jekyll",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2014",
-      "gpa": null,
-      "courses": []
-    },
-    {
-      "institution": "GitHub University",
-      "area": "B.S. in GitHub",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2012",
-      "gpa": null,
-      "courses": []
-    }
-  ],
+  "education": [],
   "skills": [],
   "languages": [],
   "interests": [],
   "references": [],
-  "publications": [
-    {
-      "name": "Paper Title Number 1",
-      "publisher": "Journal 1",
-      "releaseDate": "2009-10-01",
-      "website": "https://academicpages.github.io/files/paper1.pdf",
-      "summary": "This paper is about the number 1. The number 2 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 2",
-      "publisher": "Journal 1",
-      "releaseDate": "2010-10-01",
-      "website": "https://academicpages.github.io/files/paper2.pdf",
-      "summary": "This paper is about the number 2. The number 3 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 3",
-      "publisher": "Journal 1",
-      "releaseDate": "2015-10-01",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about the number 3. The number 4 is left for future work."
-    },
-    {
-      "name": "Paper Title Number 4",
-      "publisher": "GitHub Journal of Bugs",
-      "releaseDate": "2024-02-17",
-      "website": "https://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about fixing template issue #693."
-    }
-  ],
-  "presentations": [
-    {
-      "name": "Talk 1 on Relevant Topic in Your Field",
-      "event": "UC San Francisco, Department of Testing",
-      "date": "2012-03-01",
-      "location": "San Francisco, CA, USA",
-      "description": ""
-    },
-    {
-      "name": "Tutorial 1 on Relevant Topic in Your Field",
-      "event": "UC-Berkeley Institute for Testing Science",
-      "date": "2013-03-01",
-      "location": "Berkeley, CA, USA",
-      "description": ""
-    },
-    {
-      "name": "Talk 2 on Relevant Topic in Your Field",
-      "event": "London School of Testing",
-      "date": "2014-02-01",
-      "location": "London, UK",
-      "description": ""
-    },
-    {
-      "name": "Conference Proceeding talk 3 on Relevant Topic in Your Field",
-      "event": "Testing Institute of America 2014 Annual Conference",
-      "date": "2014-03-01",
-      "location": "Los Angeles, CA, USA",
-      "description": ""
-    }
-  ],
-  "teaching": [
-    {
-      "course": "Teaching experience 1",
-      "institution": "University 1, Department",
-      "date": "2014-01-01",
-      "role": "Undergraduate course",
-      "description": ""
-    },
-    {
-      "course": "Teaching experience 2",
-      "institution": "University 1, Department",
-      "date": "2015-01-01",
-      "role": "Workshop",
-      "description": ""
-    }
-  ],
+  "publications": [],
+  "presentations": [],
+  "teaching": [],
   "portfolio": [
     {
-      "name": "Portfolio item number 1",
+      "name": "Data Leakage Audit of a Lung Cancer CT Benchmark",
       "category": "portfolio",
       "date": "",
       "url": "",
-      "description": "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+      "description": "A controlled paired audit of four deep learning architecture families on the IQ-OTH/NCCD benchmark.<br/>"
+    },
+    {
+      "name": "Rectified Flow for Conditional CT Synthesis",
+      "category": "portfolio",
+      "date": "",
+      "url": "",
+      "description": "Class-conditional flow matching from scratch; DDP on 2\u00d7 T4, ported to JAX on 8\u00d7 TPU v5e.<br/>"
+    },
+    {
+      "name": "BanglaPoemGPT \u2014 a GPT built from scratch",
+      "category": "portfolio",
+      "date": "",
+      "url": "",
+      "description": "~10M-parameter autoregressive decoder transformer trained from first principles for Bengali poetry.<br/>"
+    },
+    {
+      "name": "DSMaT \u2014 depthwise Mamba-attention transformer",
+      "category": "portfolio",
+      "date": "",
+      "url": "",
+      "description": "Original hybrid architecture combining depthwise convolutions, Mamba state-space blocks, and self-attention.<br/>"
+    },
+    {
+      "name": "ID Card Wearing Detection",
+      "category": "portfolio",
+      "date": "",
+      "url": "",
+      "description": "Real-time compliance monitoring on a self-collected and self-annotated campus dataset (mAP50 = 0.82).<br/>"
+    },
+    {
+      "name": "Facial Attendance System",
+      "category": "portfolio",
+      "date": "",
+      "url": "",
+      "description": "Edge facial verification using SSD detection and FaceNet embeddings tuned for mobile deployment.<br/>"
+    },
+    {
+      "name": "Face Mouse for Accessibility",
+      "category": "portfolio",
+      "date": "",
+      "url": "",
+      "description": "Hands-free cursor control; nose-position tracking drives the pointer, eye blinks trigger clicks.<br/>"
+    },
+    {
+      "name": "Generative models from scratch",
+      "category": "portfolio",
+      "date": "",
+      "url": "",
+      "description": "DCGAN for Bengali digits and WGAN-GP on face data with exact gradient-penalty loops.<br/>"
+    },
+    {
+      "name": "Sketch AI: Real-Time Air Canvas",
+      "category": "portfolio",
+      "date": "",
+      "url": "",
+      "description": "Real-time air canvas: webcam fingertip tracking draws on screen with hand gestures.<br/>"
     }
   ]
 }

@@ -1,0 +1,56 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection, render } from "astro:content";
+import { isEnabled } from "../../data/site";
+
+export async function getStaticPaths() {
+  if (!isEnabled("portfolio")) return [];
+  const items = await getCollection("portfolio");
+  const paths = [{ params: { slug: undefined } }];
+  for (const entry of items) {
+    const slug = (entry as any).slug
+      ? (entry as any).slug
+      : (entry as any).id.replace(/\.mdx?$/, "");
+    paths.push({ params: { slug }, props: { entry } });
+  }
+  return paths;
+}
+
+function slugFor(entry: { id: string; slug?: string }) {
+  if ((entry as any).slug) return (entry as any).slug;
+  return entry.id.replace(/\.mdx?$/, "");
+}
+
+let entry: any = (Astro.props as any).entry;
+let items: any[] = [];
+let Content: any = null;
+const isIndex = Astro.params.slug === undefined;
+if (isIndex) {
+  items = (await getCollection("portfolio")).sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+} else {
+  const { Content: C } = await render(entry);
+  Content = C;
+}
+---
+{isIndex ? (
+  <Base title="Portfolio">
+    <h1>Portfolio</h1>
+    <ul class="portfolio-list">
+      {items.map((item) => {
+        const slug = slugFor(item);
+        return (
+          <li>
+            <a href={`/portfolio/${slug}/`}>{item.data.title}</a>
+            {item.data.excerpt && <p>{item.data.excerpt}</p>}
+          </li>
+        );
+      })}
+    </ul>
+  </Base>
+) : (
+  <Base title={entry.data.title} description={entry.data.excerpt}>
+    <h1>{entry.data.title}</h1>
+    <Content />
+    <p><a href="/portfolio/">Back to Portfolio</a></p>
+  </Base>
+)}

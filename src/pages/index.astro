@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, isEnabled } from "../data/site";
+import { getCollection, getEntry, render } from "astro:content";
+
+const entry = await getEntry("pages", "about");
+if (!entry) throw new Error("Missing content: pages/about");
+const { Content } = await render(entry);
+
+let recent: { id: string; data: { title: string; date: Date }; Content: any }[] = [];
+let showNews = false;
+if (isEnabled("news")) {
+  const items = (await getCollection("news")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
+  const top = items.slice(0, 5);
+  for (const item of top) {
+    const { Content: NewsContent } = await render(item);
+    recent.push({ id: item.id, data: item.data, Content: NewsContent });
+  }
+  showNews = recent.length > 0;
+}
+
+function monthYear(d: Date) {
+  return new Date(d).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+}
+---
+<Base title={site.name} description={site.description}>
+  <h1>{site.name}</h1>
+  <Content />
+  {showNews && (
+    <>
+      <h2>Recent updates</h2>
+      <ul class="news-list">
+        {recent.map(({ id, data, Content: NewsContent }) => (
+          <li>
+            <span>{monthYear(data.date)} — </span>
+            <NewsContent />
+          </li>
+        ))}
+      </ul>
+      <p><a href="/news/">All news →</a></p>
+    </>
+  )}
+</Base>

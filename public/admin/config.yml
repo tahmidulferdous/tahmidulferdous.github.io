@@ -1,0 +1,231 @@
+backend:
+  name: github
+  repo: tahmidulferdous/tahmidulferdous.github.io
+  branch: main
+media_folder: public/images
+public_folder: /images
+site_url: https://tahmidulferdous.github.io
+display_url: https://tahmidulferdous.github.io
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - name: about
+        label: About
+        file: src/content/pages/about.md
+        fields:
+          - name: title
+            label: Title
+            widget: string
+          - name: body
+            label: Body
+            widget: markdown
+      - name: cv
+        label: CV
+        file: src/content/pages/cv.md
+        fields:
+          - name: title
+            label: Title
+            widget: string
+          - name: body
+            label: Body
+            widget: markdown
+  - name: portfolio
+    label: Portfolio
+    folder: src/content/portfolio
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.order}}-{{slug}}"
+    sortable_fields: [order, title]
+    fields:
+      - name: title
+        label: Title
+        widget: string
+      - name: excerpt
+        label: Excerpt
+        widget: string
+        required: false
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+      - name: body
+        label: Body
+        widget: markdown
+  - name: papers
+    label: Papers
+    folder: src/content/papers
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    sortable_fields: [year, title]
+    fields:
+      - name: title
+        label: Title
+        widget: string
+      - name: authors
+        label: Authors
+        widget: string
+      - name: venue
+        label: Venue
+        widget: string
+        required: false
+      - name: year
+        label: Year
+        widget: number
+        value_type: int
+      - name: status
+        label: Status
+        widget: select
+        options:
+          - published
+          - accepted
+          - under review
+          - preprint
+          - in preparation
+      - name: url
+        label: URL
+        widget: string
+        required: false
+      - name: pdf
+        label: PDF
+        widget: string
+        required: false
+      - name: code
+        label: Code
+        widget: string
+        required: false
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+        required: false
+      - name: body
+        label: Body
+        widget: markdown
+  - name: blog
+    label: Blog
+    folder: src/content/blog
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    sortable_fields: [date, title]
+    fields:
+      - name: title
+        label: Title
+        widget: string
+      - name: date
+        label: Date
+        widget: datetime
+        format: YYYY-MM-DD
+      - name: description
+        label: Description
+        widget: string
+        required: false
+      - name: tags
+        label: Tags
+        widget: list
+        required: false
+        field:
+          name: tag
+          label: Tag
+          widget: string
+      - name: draft
+        label: Draft
+        widget: boolean
+        default: false
+      - name: body
+        label: Body
+        widget: markdown
+  - name: news
+    label: News
+    folder: src/content/news
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    sortable_fields: [date, title]
+    fields:
+      - name: title
+        label: Title
+        widget: string
+      - name: date
+        label: Date
+        widget: datetime
+        format: YYYY-MM-DD
+      - name: body
+        label: Body
+        widget: markdown
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Site
+        file: src/data/site.json
+        format: json
+        fields:
+          - name: title
+            label: Title
+            widget: string
+          - name: name
+            label: Name
+            widget: string
+          - name: description
+            label: Description
+            widget: string
+          - name: bio
+            label: Bio
+            widget: string
+          - name: location
+            label: Location
+            widget: string
+          - name: employer
+            label: Employer
+            widget: string
+          - name: email
+            label: Email
+            widget: string
+          - name: avatar
+            label: Avatar
+            widget: image
+          - name: links
+            label: Links
+            widget: object
+            fields:
+              - name: email
+                label: Email
+                widget: string
+              - name: github
+                label: GitHub
+                widget: string
+              - name: linkedin
+                label: LinkedIn
+                widget: string
+              - name: scholar
+                label: Scholar
+                widget: string
+              - name: orcid
+                label: ORCID
+                widget: string
+          - name: sections
+            label: Sections
+            widget: list
+            fields:
+              - name: key
+                label: Key
+                widget: string
+              - name: label
+                label: Label
+                widget: string
+              - name: enabled
+                label: Enabled
+                widget: boolean
+          - name: cv_pdf
+            label: CV PDF
+            widget: file
+            media_folder: /public/files
+            public_folder: /files

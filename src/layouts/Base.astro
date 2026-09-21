@@ -1,0 +1,98 @@
+---
+import { site, enabledSections } from "../data/site";
+import Icon from "../components/Icon.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = site.description } = Astro.props;
+const fullTitle = title === site.name ? site.name : `${title} - ${site.name}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192" />
+    <link rel="manifest" href="/images/manifest.json" />
+    <script is:inline>
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t) {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {
+        try {
+          var d = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", d);
+        } catch (e2) {}
+      }
+    </script>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="masthead__inner">
+        <a class="site-title" href="/">{site.title}</a>
+        <nav class="site-nav" aria-label="Primary">
+          {enabledSections.map((item) => (
+            <a href={`/${item.key}/`}>{item.label}</a>
+          ))}
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
+            <Icon name="sun" />
+            <span>Theme</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    <div class="layout">
+      <aside class="sidebar" aria-label="Author profile">
+        <div class="author-card">
+          <div class="author__avatar">
+            <img src={site.avatar} alt={site.name} width="160" height="160" fetchpriority="high" />
+          </div>
+          <h2 class="author__name">{site.name}</h2>
+          <p class="author__bio">{site.bio}</p>
+          <ul class="author__meta">
+            <li><Icon name="location" /><span>{site.location}</span></li>
+            <li><Icon name="employer" /><span>{site.employer}</span></li>
+            <li><Icon name="email" /><a href={site.links.email} aria-label="Email">Email</a></li>
+            <li><Icon name="github" /><a href={site.links.github} aria-label="GitHub">GitHub</a></li>
+            <li><Icon name="linkedin" /><a href={site.links.linkedin} aria-label="LinkedIn">LinkedIn</a></li>
+            <li><Icon name="scholar" /><a href={site.links.scholar} aria-label="Google Scholar">Google Scholar</a></li>
+            <li><Icon name="orcid" /><a href={site.links.orcid} aria-label="ORCID">ORCID</a></li>
+          </ul>
+        </div>
+      </aside>
+      <main class="content">
+        <slot />
+      </main>
+    </div>
+    <footer class="site-footer">
+      <span>{site.name} · {site.description}</span>
+    </footer>
+    <script is:inline>
+      try {
+        var btn = document.getElementById("theme-toggle");
+        if (btn) {
+          btn.addEventListener("click", function () {
+            try {
+              var cur = document.documentElement.getAttribute("data-theme") || "light";
+              var next = cur === "dark" ? "light" : "dark";
+              document.documentElement.setAttribute("data-theme", next);
+              localStorage.setItem("theme", next);
+            } catch (e) {}
+          });
+        }
+      } catch (e) {}
+    </script>
+  </body>
+</html>

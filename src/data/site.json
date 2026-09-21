@@ -1,0 +1,45 @@
+{
+  "title": "Tahmidul Bin Ferdous",
+  "name": "Tahmidul Bin Ferdous",
+  "description": "PhD Applicant · Machine Learning Evaluation Validity & AI Safety · International Islamic University Chittagong",
+  "bio": "CSE graduate working on whether machine learning evaluations measure what they claim to measure.",
+  "location": "Chittagong, Bangladesh",
+  "employer": "International Islamic University Chittagong",
+  "email": "tahmidul.ferdous.edu@gmail.com",
+  "avatar": "/images/profile.jpg",
+  "links": {
+    "email": "mailto:tahmidul.ferdous.edu@gmail.com",
+    "github": "https://github.com/tahmidulferdous",
+    "linkedin": "https://www.linkedin.com/in/tahmidul-kashfi",
+    "scholar": "https://scholar.google.com/citations?user=RqWBgxYAAAAJ",
+    "orcid": "https://orcid.org/0009-0001-1459-4124"
+  },
+  "sections": [
+    {
+      "key": "portfolio",
+      "label": "Portfolio",
+      "enabled": true
+    },
+    {
+      "key": "papers",
+      "label": "Papers",
+      "enabled": false
+    },
+    {
+      "key": "blog",
+      "label": "Blog",
+      "enabled": false
+    },
+    {
+      "key": "news",
+      "label": "News",
+      "enabled": false
+    },
+    {
+      "key": "cv",
+      "label": "CV",
+      "enabled": true
+    }
+  ],
+  "cv_pdf": "/files/CV_Tahmidul_Bin_Ferdous.pdf"
+}

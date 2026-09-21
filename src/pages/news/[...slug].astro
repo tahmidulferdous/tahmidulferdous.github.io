@@ -1,0 +1,35 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection, render } from "astro:content";
+import { isEnabled } from "../../data/site";
+
+export async function getStaticPaths() {
+  if (!isEnabled("news")) return [];
+  return [{ params: { slug: undefined } }];
+}
+
+function monthYear(d: Date) {
+  return new Date(d).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+}
+
+const items = (await getCollection("news")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const rendered: { id: string; data: any; Content: any }[] = [];
+for (const item of items) {
+  const { Content: C } = await render(item);
+  rendered.push({ id: item.id, data: item.data, Content: C });
+}
+---
+<Base title="News">
+  <h1>News</h1>
+  <ul class="news-list">
+    {rendered.map(({ id, data, Content: ItemContent }) => (
+      <li>
+        <span>{monthYear(data.date)} — </span>
+        <ItemContent />
+      </li>
+    ))}
+  </ul>
+</Base>

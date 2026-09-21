@@ -1,5 +1,5 @@
 ---
-title: "Tahmidul Bin Ferdous"
+title: Tahmidul Bin Ferdous
 ---
 
 I recently completed a BSc in Computer Science and Engineering at International Islamic University
@@ -8,19 +8,19 @@ for lung cancer CT classification. I am currently a student researcher at EliteL
 
 My work is about whether machine learning evaluations measure what they claim to measure. My
 thesis took a widely used lung cancer CT benchmark and showed that a substantial part of its
-reported accuracy — and nearly all of its reported minority-class performance — was an artefact of
+reported accuracy and nearly all of its reported minority-class performance was an artefact of
 how the data was partitioned rather than a property of the models. Holding architecture,
 preprocessing, augmentation and hyperparameters fixed across four architecture families spanning
 two orders of magnitude in parameter count, replacing a random split with a deterministic ordering
 split cost roughly 7.5 accuracy points and halved minority-class F1, with the failure concentrated
 exactly where aggregate accuracy hides it. That result generalises: benchmark contamination,
-train–test overlap, and evaluation gaming are the same failure mode wherever they appear.
+train test overlap, and evaluation gaming are the same failure mode wherever they appear.
 
-I want to work on measurement validity for frontier systems — evaluation integrity, benchmark
+I want to work on measurement validity for frontier systems evaluation integrity, benchmark
 contamination, interpretability, and AI security. Alongside the thesis I have built transformers,
 DCGANs, WGAN-GP, denoising diffusion models, and rectified flow from the papers rather than from
 reference implementations, and ported a full training pipeline from PyTorch to JAX on 8× TPU v5e.
-All of it — roughly 81 GPU-hours across 250 tracked experiments — ran on free-tier Kaggle and Colab
+All of it roughly 81 GPU-hours across 250 tracked experiments — ran on free-tier Kaggle and Colab
 compute from a laptop with integrated graphics.
 
 [Download my CV](/files/CV_Tahmidul_Bin_Ferdous.pdf) · [ORCID 0009-0001-1459-4124](https://orcid.org/0009-0001-1459-4124) · tahmidul.ferdous.edu@gmail.com

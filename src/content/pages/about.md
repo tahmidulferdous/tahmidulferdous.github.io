@@ -23,8 +23,6 @@ reference implementations, and ported a full training pipeline from PyTorch to J
 All of it roughly 81 GPU-hours across 250 tracked experiments ran on free-tier Kaggle and Colab
 compute from a laptop with integrated graphics.
 
-[Download my CV](/files/CV_Tahmidul_Bin_Ferdous.pdf) · [ORCID 0009-0001-1459-4124](https://orcid.org/0009-0001-1459-4124) · tahmidul.ferdous.edu@gmail.com
-
 ## Code and experiment logs
 
 Everything below is public, with the code as it ran, the metrics for every training run, and the
@@ -40,10 +38,9 @@ figures those runs produced.
 - Evaluation validity, benchmark contamination, and measurement integrity in machine learning
 - Technical AI safety, alignment, and red-teaming
 - Interpretability
-- Generative modelling -diffusion, flow matching, GANs
+- Generative modelling : diffusion, flow matching, GANs
 - Efficient and distributed training
 
 ## Education
 
 **BSc in Computer Science and Engineering**, International Islamic University Chittagong, 2022–2026.
-CGPA 3.311 / 4.00, 163 credits. Thesis grade A. Supervisor: Md. Khaliluzzaman.

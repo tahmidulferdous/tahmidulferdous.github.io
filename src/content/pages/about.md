@@ -2,26 +2,15 @@
 title: Tahmidul Bin Ferdous
 ---
 
-I recently completed a BSc in Computer Science and Engineering at International Islamic University
-Chittagong, Bangladesh, where my undergraduate thesis audited data leakage in deep learning models
+I recently completed a BSc in Computer Science and Engineering at International Islamic University,Chittagong, Bangladesh, where my undergraduate thesis audited data leakage in deep learning models
 for lung cancer CT classification. I am currently a student researcher at EliteLab, and I am applying for PhD study in the United States for Fall 2027 entry.
 
-My work is about whether machine learning evaluations measure what they claim to measure. My
-thesis took a widely used lung cancer CT benchmark and showed that a substantial part of its
-reported accuracy and nearly all of its reported minority-class performance was an artefact of
-how the data was partitioned rather than a property of the models. Holding architecture,
-preprocessing, augmentation and hyperparameters fixed across four architecture families spanning
-two orders of magnitude in parameter count, replacing a random split with a deterministic ordering
-split cost roughly 7.5 accuracy points and halved minority-class F1, with the failure concentrated
-exactly where aggregate accuracy hides it. That result generalises: benchmark contamination,
-train test overlap, and evaluation gaming are the same failure mode wherever they appear.
+My research centers on building parameter-efficient deep learning architectures and auditing the reliability of clinical AI benchmarks. I am particularly interested in uncovering where high benchmark metrics mask underlying shortcut learning or evaluation flaws.
 
-I want to work on measurement validity for frontier systems evaluation integrity, benchmark
-contamination, interpretability, and AI security. Alongside the thesis I have built transformers,
-DCGANs, WGAN-GP, denoising diffusion models, and rectified flow from the papers rather than from
-reference implementations, and ported a full training pipeline from PyTorch to JAX on 8× TPU v5e.
-All of it roughly 81 GPU-hours across 250 tracked experiments ran on free-tier Kaggle and Colab
-compute from a laptop with integrated graphics.
+In my undergraduate thesis on 3 class lung cancer CT classification, I designed a lightweight hybrid architecture combining **Depthwise Separable Convolutions and Mamba(**[**link**](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/tree/master/extra_experiments/dsmat-mamba)**)**, compressing a **14M+ parameter baseline(**[**link**](https://ieeexplore.ieee.org/mediastore/IEEE/content/media/6287639/10820123/11008645/chowd.t10-3572423-large.gif)**) down to  1M parameters** while matching state of the art accuracy. Rather than accepting these high metrics at face value, I audited the models using **Grad-CAM saliency maps** and discovered severe **shortcut learning outside the lung Region of Interest (ROI)**.
+
+To test whether severe minority-class imbalance (Benign cases) was driving this behavior, I reformulated a generative oversampling pipeline tired **DDPM** ([link](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/blob/master/extra_experiments/diffusion/README.md)), even tried **Rectified Flow(**[**link**](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/tree/master/extra_experiments/rectified-flow)**)** for good FID and fast generation,migrated training from PyTorch on dual T4 GPUs to **JAX(**[**link**](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/blob/master/extra_experiments/rectified-flow/code/rectified-flow-tpu.ipynb)**) on TPUs** cutting training time by **70% (from 3 days to under 24 hours)**. When Grad-CAM revealed that background shortcuts persisted even under synthetic balancing, I audited the dataset protocol itself across **25+ tracked experiments (Weights & Biases)**. By replacing naive slice level random splits with strict sequential split isolation, I demonstrated that published SOTA claims on this benchmark are heavily inflated by **slice-level data leakage** across CNNs, ViTs, and Mamba architectures alike.
+
 
 ## Code and experiment logs
 
@@ -37,8 +26,8 @@ figures those runs produced.
 
 - Evaluation validity, benchmark contamination, and measurement integrity in machine learning
 - Technical AI safety, alignment, and red-teaming
-- Interpretability
-- Generative modelling : diffusion, flow matching, GANs
+- mechanistic interpretability
+- Generative modelling : diffusion, flow matching 
 - Efficient and distributed training
 
 ## Education

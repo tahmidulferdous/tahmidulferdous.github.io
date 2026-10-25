@@ -67,6 +67,9 @@ const fullTitle = title === site.name ? site.name : `${title} - ${site.name}`;
             <li><Icon name="email" /><a href={site.links.email} aria-label="Email">Email</a></li>
             <li><Icon name="github" /><a href={site.links.github} aria-label="GitHub">GitHub</a></li>
             <li><Icon name="linkedin" /><a href={site.links.linkedin} aria-label="LinkedIn">LinkedIn</a></li>
+            {site.links.wandb && (
+              <li><Icon name="wandb" /><a href={site.links.wandb} aria-label="Weights & Biases">Weights & Biases</a></li>
+            )}
             <li><Icon name="scholar" /><a href={site.links.scholar} aria-label="Google Scholar">Google Scholar</a></li>
             <li><Icon name="orcid" /><a href={site.links.orcid} aria-label="ORCID">ORCID</a></li>
           </ul>

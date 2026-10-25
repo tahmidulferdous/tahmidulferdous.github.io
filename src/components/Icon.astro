@@ -30,6 +30,11 @@ const { name } = Astro.props;
   )
 }
 {
+  name === "wandb" && (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.5 19.5h2.2l4.8-15H7.3l-4.8 15zm5.7 0h2.2l4.8-15h-2.2l-4.8 15zm5.7 0h2.2l4.8-15h-2.2l-4.8 15z"/></svg>
+  )
+}
+{
   name === "location" && (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
   )

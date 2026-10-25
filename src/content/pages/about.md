@@ -1,34 +1,39 @@
 ---
-title: Tahmidul Bin Ferdous
+title: "Tahmidul Bin Ferdous"
 ---
 
-I recently completed a BSc in Computer Science and Engineering at International Islamic University,Chittagong, Bangladesh, where my undergraduate thesis audited data leakage in deep learning models
-for lung cancer CT classification. I am currently a student researcher at EliteLab, and I am applying for PhD study in the United States for Fall 2027 entry.
+I recently completed a BSc in Computer Science and Engineering at International Islamic University Chittagong (IIUC), Bangladesh, where my undergraduate thesis audited data leakage and shortcut learning in deep learning models for lung cancer CT classification. I am currently a Student Researcher at EliteLab, and I am applying for funded MS/PhD study for 2027 entry.
 
-My research centers on building parameter-efficient deep learning architectures and auditing the reliability of clinical AI benchmarks. I am particularly interested in uncovering where high benchmark metrics mask underlying shortcut learning or evaluation flaws.
+[Download my CV (PDF)](/files/academic_cv_tahmidul.pdf) · [Google Scholar](https://scholar.google.com/citations?user=RqWBgxYAAAAJ) · [ORCID 0009-0001-1459-4124](https://orcid.org/0009-0001-1459-4124) · [W&B Dashboard](https://forge.coreweave.com/wandb/tahmidulkashfi15-international-islamic-university-chittagong/projects) · [tahmidul.ferdous.edu@gmail.com](mailto:tahmidul.ferdous.edu@gmail.com)
 
-In my undergraduate thesis on 3 class lung cancer CT classification, I designed a lightweight hybrid architecture combining **Depthwise Separable Convolutions and Mamba(**[**link**](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/tree/master/extra_experiments/dsmat-mamba)**)**, compressing a **14M+ parameter baseline(**[**link**](https://ieeexplore.ieee.org/mediastore/IEEE/content/media/6287639/10820123/11008645/chowd.t10-3572423-large.gif)**) down to  1M parameters** while matching state of the art accuracy. Rather than accepting these high metrics at face value, I audited the models using **Grad-CAM saliency maps** and discovered severe **shortcut learning outside the lung Region of Interest (ROI)**.
+### Research Summary & Focus
 
-To test whether severe minority-class imbalance (Benign cases) was driving this behavior, I reformulated a generative oversampling pipeline tried **DDPM** ([link](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/blob/master/extra_experiments/diffusion/README.md)), even tried **Rectified Flow(**[**link**](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/tree/master/extra_experiments/rectified-flow)**)** for good FID and fast generation,migrated training from PyTorch on dual T4 GPUs to **JAX(**[**link**](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/blob/master/extra_experiments/rectified-flow/code/rectified-flow-tpu.ipynb)**) on TPUs** cutting training time by **70% (from 3 days to under 24 hours)**. When Grad-CAM revealed that background shortcuts persisted even under synthetic balancing, I audited the dataset protocol itself across **25+ tracked experiments (Weights & Biases)**. By replacing naive slice level random splits with strict sequential split isolation, I demonstrated that published SOTA claims on this benchmark are heavily inflated by **slice-level data leakage(**[**link**](https://github.com/tahmidulferdous/lung-ct-data-leakage-study#the-result)**)** across CNNs, ViTs, and Mamba architectures alike.
+My research centers on **evaluation validity, parameter-efficient vision architectures, and generative flow matching** for clinical and low-resource regimes. I am particularly interested in uncovering where high benchmark metrics mask underlying data leakage, shortcut learning, or implementation flaws—and engineering reproducible systems across **PyTorch DDP** and **JAX/Flax on TPUs** to test rigorous fixes.
 
-## Code and experiment logs
+### Undergraduate Thesis & Extended Research Arc
 
-Everything below is public, with the code as it ran, the metrics for every training run, and the
-figures those runs produced.
+Rather than publishing an incremental accuracy claim on a flawed medical benchmark, I spent my final year conducting a four-stage empirical and systems investigation on the IQ-OTH/NCCD lung CT dataset (1,097 slices across 110 patients), tracked across **250+ public Weights & Biases runs**:
 
-- [lung-ct-data-leakage-study](https://github.com/tahmidulferdous/lung-ct-data-leakage-study) -
-  the thesis: 188 runs across nine experiments, including the generative augmentation work.
-- [ml-research-log](https://github.com/tahmidulferdous/ml-research-log) - the wider record: 250
-  tracked runs across 14 projects, plus the Kaggle notebooks behind them.
+1. **Mathematical & Empirical Data Leakage Audit (Core Thesis):** Derived via the hypergeometric distribution that standard 80/20 slice-level random splits leak **83.5% of minority (Benign) patients** across train and test sets. Evaluating 11 models across CNNs (CCAL, PLOS CNN), EfficientNets (B0–B4), and Vision Transformers (ViT-B/16, B/32, L/16) under paired leaky vs. sequential case-order splits exposed a **6.07 to 18.28 percentage point accuracy inflation** (CCAL 99.55% → 85.71%; EfficientNet-B0 98.64% → 91.07%) and a **Benign F1 collapse from 0.66–0.98 down to 0.17–0.62**, corroborated by Grad-CAM saliency maps showing chest-wall and scanner-table shortcut learning.
+2. **Parameter-Efficient Hybrid Backbones & Multi-Teacher Distillation:** Engineered **DSMaT-Pico (0.84M params)** and **DSMaT-Nano (2.04M params)** from scratch by combining Depthwise Separable Convolutions with 2D Mamba Selective State Space scans and Windowed Self-Attention, reaching **97.58%** stratified test accuracy at **4.8×–17× smaller size** than EfficientNet-B0 and CCAL baselines. To regularize models on the strict sequential split, I built a **Multi-Teacher Knowledge Distillation** pipeline (`EfficientNet-B0 + DenseNet-121 + ConvNeXt-Tiny` → **0.35M-parameter `ShuffleNetV2-0.5x`**), where the 0.35M student outperformed its best 6.96M teacher (**88.39% vs. 87.50% accuracy**, boosting Benign F1 from **0.3636 to 0.5833** at **20.2× compression**).
+3. **Generative Balancing (DDPM → Rectified Flow) & JAX/TPU Scaling:** Built a 35.72M Class-Conditional DDPM ($T=1000$) and reformulated it into straight-line **Rectified Flow** ($T=50$ Euler ODE steps, Logit-Normal timestep sampling, **20× faster sampling**). Resolving a Classifier-Free Guidance null-token index collision (`null_class=3`) boosted downstream `DenseNet-121` sequential-split accuracy to **88.39%** and **0.6667 Benign F1** (surpassing classical augmentation). To scale a **73.46M-parameter U-Net to native 224×224 resolution** after hitting `torch.compile` CUDA Graph VRAM limits on 2× Tesla T4 GPUs (33.5s/epoch), I ported the full pipeline to **native JAX/Flax (`jax.pmap`) on an 8-core Google Cloud TPU v5e-8**, achieving a **13.4× throughput speedup (2.50s/epoch)** and completing 3,000 epochs in 2.1 hours (`best_loss = 0.0923`).
+4. **LLM-Assisted Post-Mortem Code & Pipeline Audit:** To ensure complete scientific transparency before graduating, I conducted a systematic AI-assisted post-mortem code audit across all 16 notebooks and logs, documenting subtle pipeline bottlenecks—including CFG index collisions in DDPM, static in-memory Albumentations caching on TPU, uniform teacher weighting in KD, and ASCII filename boundary sorting—in my open-source research log.
 
-## Research interests
+### Code, Experiment Logs & Dashboards
 
-- Evaluation validity, benchmark contamination, and measurement integrity in machine learning
-- Technical AI safety, alignment, and red-teaming
-- mechanistic interpretability
-- Generative modelling : diffusion, flow matching 
-- Efficient and distributed training
+* **[lung-ct-data-leakage-study](https://github.com/TahmidulFerdous/lung-ct-data-leakage-study):** Core thesis and extended experimental repository (188+ W&B runs across leakage audits, DSMaT Mamba-Transformer, Multi-Teacher KD, DDPM, and GPU/TPU Rectified Flow).
+* **[ml-research-log](https://github.com/TahmidulFerdous/ml-research-log):** Engineering logbook and post-mortem audit documentation spanning 250+ tracked runs across 14 deep learning projects.
+* **[Weights & Biases Public Dashboard](https://forge.coreweave.com/wandb/tahmidulkashfi15-international-islamic-university-chittagong/projects):** Complete public telemetry, loss curves, hardware utilization metrics, and run configs across all 250+ experiments.
 
-## Education
+### Research Interests
 
-**BSc in Computer Science and Engineering**, International Islamic University Chittagong, 2022–2026.
+* Evaluation validity, benchmark contamination, and measurement integrity in machine learning.
+* Efficient vision architectures (State Space Models / Mamba, Vision Transformers, Knowledge Distillation).
+* Generative modeling & ODE flow matching (Rectified Flow, Diffusion Models) for low-data regimes.
+* Distributed deep learning systems (multi-GPU PyTorch DDP, multi-device JAX/Flax on TPUs).
+* Technical AI safety, alignment, and mechanistic interpretability.
+
+### Education
+
+* **BSc in Computer Science and Engineering**, International Islamic University Chittagong (2022–2026).
+  * CGPA: 3.31 / 4.00, 163 credits. Thesis grade: A. Supervisor: Dr. Md. Khaliluzzaman.

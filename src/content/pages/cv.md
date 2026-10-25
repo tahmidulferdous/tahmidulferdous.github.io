@@ -1,75 +1,74 @@
 ---
-title: CV
+title: "CV"
 ---
 
-[Download the PDF version](/files/academic_cv_v1.5.pdf)
+[Download the PDF version](/files/academic_cv_tahmidul.pdf)
 
 ## Education
 
-* **BSc in Computer Science & Engineering** — International Islamic University Chittagong (IIUC), Chittagong, Bangladesh
-    * 2022 – 2026
-    * Undergraduate Thesis: "Detecting Data Leakage in Lung Cancer CT Classification, across CNN, EfficientNet, and Vision Transformer models."
-    * GPA: 3.31 / 4.00
-
-## 
+* **BSc in Computer Science & Engineering** — International Islamic University Chittagong (IIUC), Chittagong, Bangladesh *(2022 – 2026)*
+  * **Undergraduate Thesis:** *"Detecting Data Leakage in Lung Cancer CT Classification: A Patient-Level Evaluation of CNN, EfficientNet, and Vision Transformer Models."*
+  * **GPA:** 3.31 / 4.00
 
 ## Technical Skills
 
 * **Programming Languages:** Python (Primary, 250+ logged experiments), C++, SQL, Bash/Shell, LaTeX.
-* **Deep Learning Frameworks:** PyTorch (Advanced), JAX/Flax, torchvision, timm, TensorFlow/Keras, Hugging Face.
+* **Deep Learning Frameworks:** PyTorch (Advanced), JAX/Flax, Optax, torchvision, timm, TensorFlow/Keras, Hugging Face.
 * **Computer Vision & ML Libraries:** OpenCV, MediaPipe, Ultralytics YOLOv11, scikit-learn, Albumentations, NumPy, Pandas, Matplotlib.
-* **Systems & Infrastructure:** Distributed Data Parallel (`torchrun`, multi-GPU DDP), Google Cloud TPU v5e (8-device JAX), Mixed Precision (AMP), Weights & Biases (250 tracked runs), Git, Docker, Linux/Ubuntu.
-* **Models Built from Scratch:** Autoregressive Decoder Transformer (GPT-1), Rectified Flow / Flow Matching with ODE solvers, Conditional DDPM, WGAN-GP (gradient penalty & critic loop), DCGAN, Mamba-Attention hybrid (DSMaT).
+* **Systems & Infrastructure:** Distributed Data Parallel (`torchrun`, multi-GPU DDP), Google Cloud TPU v5e-8 (8-device `jax.pmap`), Mixed Precision (AMP / BF16), [Weights & Biases (250+ tracked runs)](https://forge.coreweave.com/wandb/tahmidulkashfi15-international-islamic-university-chittagong/projects), Git, Docker, Linux/Ubuntu.
+* **Models Built from Scratch:** Mamba-Transformer Hybrid (**DSMaT-Pico/Nano**), Multi-Teacher Knowledge Distillation, Class-Conditional Rectified Flow (Flow Matching with Euler ODE solvers), Conditional DDPM, Autoregressive Decoder Transformer (GPT-1), WGAN-GP, DCGAN.
 
 ## Research & Professional Experience
 
-* **EliteLab** — Remote, _Student Researcher_ (2026 – Present)
-* **Outlier AI** — Remote, _AI Data Quality & Alignment Specialist_ (November 2024 – February 2025)
-    * Audited and curated large-scale human preference and reasoning datasets utilized for Reinforcement Learning from Human Feedback (RLHF) and alignment.
-    * Refined multi-turn annotation guidelines, directly mitigating prompt ambiguity and improving inter-annotator reliability across reasoning benchmarks.
+### EliteLab — *Remote*
+**Student Researcher** *(2026 – Present)*
+* Conducting empirical research on benchmark contamination, shortcut learning, and evaluation validity across computer vision and generative models.
+* Performing LLM-assisted post-mortem code and pipeline audits across multi-GPU PyTorch and multi-device JAX workloads to verify data partition isolation and reproductive fidelity.
 
-## Personal Projects
+### Outlier AI — *Remote*
+**AI Data Quality & Alignment Specialist** *(November 2024 – February 2025)*
+* Audited and curated large-scale human preference and reasoning datasets utilized for Reinforcement Learning from Human Feedback (RLHF) and post-training alignment.
+* Refined multi-turn annotation guidelines, directly mitigating prompt ambiguity and improving inter-annotator reliability across reasoning benchmarks.
 
-* **Data Leakage in Lung Cancer CT Classification (Undergraduate Thesis)** (Sep 2025 – Jun 2026) · [Code](https://github.com/tahmidulferdous/lung-ct-data-leakage-study)
-    * _PyTorch, timm, CCAL, EfficientNet B0–B4, ViT-B/16, Weights & Biases (188 runs)_
-    * Audited slice-level data splits on the IQ-OTH/NCCD lung CT dataset across four architecture families (CCAL dual-CNN attention, EfficientNet B0–B4, ViT-B/16, and a PLOS ONE four-block CNN), training every model twice under a shuffled and a file-order split with everything else held fixed.
-    * Showed that shuffled slice splits inflate test accuracy by **\~7.5 points** at a matched split ratio over three seeds (CCAL 95.8% → 88.3%; EfficientNet 99.3% → 91.7%).
-* **Conditional Rectified Flow for CT Synthesis on Google Cloud TPU v5e** (Feb 2026 – Mar 2026) · [Code](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/tree/main/extra_experiments/rectified-flow)
-    * _PyTorch, JAX/Flax, Google Cloud TPU v5e, Weights & Biases (18 runs, 32.1 GPU-hours)_
-    * Implemented class-conditional Rectified Flow (flow matching) from original mathematical literature: linear interpolant trajectory, velocity-prediction objective, logit-normal timestep sampling, and Euler/midpoint ODE numerical solvers.
-    * Built multi-GPU DistributedDataParallel (DDP) PyTorch training infrastructure, then **ported the complete architecture to JAX/Flax for 8-device Google TPU v5e**, achieving **576 images/sec** (2.50 s/epoch vs. 15.5 s/epoch on 2× Tesla T4)—a **\~6× throughput speedup**.
-* **BanglaPoemGPT — 10M-Parameter Autoregressive Transformer from Scratch** (March 2025) · [Code](https://github.com/tahmidulferdous/bangla-gpt-from-scratch)
-    * _Python, PyTorch, Kaggle P100 (4 runs, 2.0 GPU-hours)_
-    * Engineered a GPT-1 architecture from first mathematical principles without high-level library wrappers: multi-head causal self-attention, learned positional embeddings, custom tokenizer, and autoregressive generation loop.
-    * Trained on a 3M-token Bengali poetic corpus, achieving validation cross-entropy loss of **1.693** with coherent generative sampling.
-* **Conditional DDPM for Minority-Class CT Balancing** (February 2026) · [Code](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/tree/main/extra_experiments/diffusion)
-    * _PyTorch, DistributedDataParallel, 2× Tesla T4 (5 runs, 4.2 GPU-hours)_
-    * Constructed a class-conditional Denoising Diffusion Probabilistic Model (DDPM) featuring a conditional U-Net backbone, cosine noise schedule, and multi-GPU DDP orchestration, reaching a training loss of **0.0238** over 3,000 epochs.
-* **Edge Vision: YOLOv11 Campus Security & Facial Biometric Systems** (Oct 2024 – Nov 2024) · [Code](https://github.com/tahmidulferdous/yolo11-idcard-detection) · [Kaggle](https://www.kaggle.com/code/tahmidulkashfi/iiuc-idcard-v2-0-38map95) · Demos: [ID Card Detection](https://www.linkedin.com/feed/update/urn:li:activity:7252285574110171137/), [Facial Attendance](https://www.linkedin.com/feed/update/urn:li:activity:7257462743069270016/)
-    * _YOLOv11, OpenCV, FaceNet, PyTorch_
-    * Curated, annotated, and trained custom YOLOv11-s/m models for campus ID compliance monitoring, reaching **mAP50 = 0.82**.
-    * Implemented edge facial recognition utilizing SSD face detectors and FaceNet 128-d embeddings with cosine similarity matching, calibrating decision thresholds against false-accept/false-reject trade-offs.
-* **Generative Adversarial Networks: Bengali Digits & Faces** (Nov 2024) · [Code (Digits)](https://github.com/tahmidulferdous/bengali-digit-gan) · [Code (Faces)](https://github.com/tahmidulferdous/wgan-face-generation)
-    * _PyTorch, DCGAN, WGAN-GP, Weights & Biases (42 runs)_
-    * Implemented DCGAN and WGAN-GP (gradient penalty, critic loop) from scratch to generate handwritten Bengali digits and face images, comparing training stability across adversarial objectives.
-* **Sketch AI: Real-Time Air Canvas** (Nov 2024) · [Demo](https://www.linkedin.com/feed/update/urn:li:activity:7267928416534839296/)
-    * _MediaPipe, OpenCV, Python_
-    * Built a real-time air-canvas that tracks fingertip landmarks from a webcam to draw on screen with hand gestures.
-* **Face Mouse: Hands-Free Cursor Control** (Aug 2024) · [Demo](https://www.linkedin.com/feed/update/urn:li:activity:7271416959215239168/)
-    * _MediaPipe, OpenCV, PyAutoGUI_
-    * Built a hands-free mouse for users with motor disabilities: nose landmarks drive the cursor and eye blinks trigger clicks.
+## Research & Engineering Projects
+
+### Data Leakage Audit in Lung Cancer CT Classification (Undergraduate Thesis) *(Sep 2025 – Jun 2026)*
+*PyTorch, timm, CCAL, EfficientNet B0–B4, ViT-B/16, Grad-CAM, Weights & Biases (188 runs)* | [Code](https://github.com/tahmidulferdous/lung-ct-data-leakage-study) | [W&B Logs](https://forge.coreweave.com/wandb/tahmidulkashfi15-international-islamic-university-chittagong/projects)
+* Derived via the hypergeometric distribution that standard 80/20 slice-level splits on the IQ-OTH/NCCD lung CT dataset (1,097 slices, 110 patients) leak **83.5% of minority Benign patients** across train and test sets.
+* Audited 11 architectures across 4 model families (CCAL dual-CNN + MHA, EfficientNet B0–B4, ViT-B/16, ViT-B/32, ViT-L/16, and a PLOS ONE 4-block CNN) under paired leaky 80/20 vs. sequential case-order 70/20/10 splits, showing test accuracy drops of **6.07 to 18.28 percentage points** (CCAL 99.55% → 85.71%; EfficientNet-B0 98.64% → 91.07%) and Benign F1 collapse from **0.66–0.98 down to 0.17–0.62**.
+* Conducted Grad-CAM saliency and MHA attention-weight diagnostics plus an AI-assisted post-mortem code audit, uncovering peripheral chest-wall/scanner-table shortcut learning and ASCII filename boundary-cutting artifacts.
+
+### DSMaT (MambaVision-Hybrid) & Multi-Teacher Knowledge Distillation *(Jan 2026 – Mar 2026)*
+*PyTorch, 2D Selective SSM (Mamba), Windowed Self-Attention, KL Distillation, Weights & Biases* | [Code](https://github.com/tahmidulferdous/lung-ct-data-leakage-study)
+* Engineered **DSMaT-Pico (0.84M params)** and **DSMaT-Nano (2.04M params)** from scratch by hybridizing Depthwise Separable Convolutions (Stages 1–2) with symmetric 2D Mamba Selective Scans and Windowed Self-Attention (`MMSS`, Stages 3–4), reaching **97.58%** stratified test accuracy at **4.8×–17× smaller size** than EfficientNet-B0 and CCAL baselines.
+* Built a Multi-Teacher Knowledge Distillation pipeline ($T=4.0, \alpha=0.3$) distilling an ensemble of `EfficientNet-B0`, `DenseNet-121`, and `ConvNeXt-Tiny` (38.8M combined) into a **0.35M-parameter `ShuffleNetV2-0.5x` student**, outperforming the best individual teacher on the strict sequential split (**88.39% vs. 87.50% accuracy**, Benign F1 0.3636 → 0.5833, 0.9646 AUC) at **20.2× parameter compression**.
+
+### Conditional Rectified Flow & DDPM for Minority-Class CT Synthesis (GPU DDP → TPU v5e-8) *(Feb 2026 – Mar 2026)*
+*PyTorch DDP, JAX/Flax (`pmap`), Google Cloud TPU v5e-8, 2× Tesla T4, W&B (23 runs, 36.3 GPU/TPU-hrs)* | [RF Code](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/tree/master/extra_experiments/rectified-flow) | [DDPM Code](https://github.com/tahmidulferdous/lung-ct-data-leakage-study/tree/master/extra_experiments/diffusion)
+* Implemented a 35.72M Class-Conditional DDPM ($T=1000$) and reformulated it into straight-line **Rectified Flow** ($x_t = (1-t)x_0 + t\epsilon$, Logit-Normal timestep sampling, 50-step Euler ODE solver, **20× faster sampling**); resolved a Classifier-Free Guidance null-token index collision (`null_class=3`) to boost downstream `DenseNet-121` sequential-split accuracy to **88.39%** and **0.6667 Benign F1** (surpassing classical augmentation).
+* Scaled the Conditional U-Net to **73.46M parameters at native 224×224 resolution**: after diagnosing a `torch.compile` CUDA Graph memory-pool OOM on 2× Tesla T4 GPUs (33.5s/epoch over 873 epochs), ported the full training and fused-CFG pipeline to **native JAX/Flax (`jax.pmap`) on an 8-core Google Cloud TPU v5e-8**, achieving a **13.4× speedup (2.50s/epoch)** and completing 3,000 epochs in 2.1 hours (`best_loss = 0.0923`).
+
+### BanglaPoemGPT — 10M-Parameter Autoregressive Transformer from Scratch *(March 2025)*
+*Python, PyTorch, Kaggle P100 (4 runs, 2.0 GPU-hours)* | [Code](https://github.com/tahmidulferdous/bangla-gpt-from-scratch)
+* Engineered a GPT-1 architecture from first mathematical principles without high-level library wrappers: multi-head causal self-attention, learned positional embeddings, custom tokenizer, and autoregressive generation loop; trained on a 3M-token Bengali poetic corpus to a validation cross-entropy loss of **1.693**.
+
+### Edge Vision: YOLOv11 Campus Security & Facial Biometric Systems *(Oct 2024 – Nov 2024)*
+*YOLOv11, OpenCV, FaceNet, PyTorch* | [Code](https://github.com/tahmidulferdous/yolo11-idcard-detection), [Kaggle](https://www.kaggle.com/code/tahmidulkashfi/iiuc-idcard-v2-0-38map95) | Demos: [ID Card Detection](https://www.linkedin.com/feed/update/urn:li:activity:7252285574110171137/), [Facial Attendance](https://www.linkedin.com/feed/update/urn:li:activity:7257462743069270016/)
+* Curated, annotated, and trained custom YOLOv11-s/m models for campus ID compliance monitoring (**mAP50 = 0.82**), and built an edge facial recognition pipeline using SSD detectors and FaceNet 128-d cosine similarity matching.
+
+### Generative Adversarial Networks: Bengali Digits & Faces *(Nov 2024)*
+*PyTorch, DCGAN, WGAN-GP, Weights & Biases (42 runs)* | [Code (Digits)](https://github.com/tahmidulferdous/bengali-digit-gan), [Code (Faces)](https://github.com/tahmidulferdous/wgan-face-generation)
+* Implemented DCGAN and WGAN-GP (gradient penalty, critic loop) from scratch to generate handwritten Bengali digits and face images, comparing training stability across adversarial objectives.
+
+### Interactive Assistive & Real-Time Vision: Sketch AI & Face Mouse *(Aug 2024 – Nov 2024)*
+*MediaPipe, OpenCV, PyAutoGUI, Python* | Demos: [Sketch AI](https://www.linkedin.com/feed/update/urn:li:activity:7267928416534839296/), [Face Mouse](https://www.linkedin.com/feed/update/urn:li:activity:7271416959215239168/)
+* Built a real-time webcam air-canvas driven by fingertip landmarks (**Sketch AI**) and a hands-free cursor controller for users with motor disabilities where nose landmarks steer the cursor and eye blinks trigger clicks (**Face Mouse**).
 
 ## Certifications
 
-* **DeepLearning.AI Specializations (Coursera):** Neural Networks & Deep Learning, Improving Deep Neural Networks (Tuning, Regularization, Optimization), Convolutional Neural Networks, Sequence Models.
+* **CS231n: Deep Learning for Computer Vision, DeepLearning.AI Specializations (Coursera):** [Neural Networks & Deep Learning](https://www.coursera.org/account/accomplishments/certificate/Z8ERPLQ3CLFZ), [Improving Deep Neural Networks (Tuning, Regularization, Optimization)](https://www.coursera.org/account/accomplishments/certificate/PH5R5XW9ZUC3), [Convolutional Neural Networks](https://www.coursera.org/account/accomplishments/certificate/URKXK7BZC8JY), [Sequence Models](https://www.coursera.org/account/accomplishments/certificate/VG3F3QYWC9PG), [Data Scientist Machine Learning](https://www.codecademy.com/profiles/kashfi20/certificates/8e9e59de3f924b33ad2371faf667129b).
 
 ## Academic References
 
-* **Dr. Md. Khaliluzzaman**
-    * Associate Professor
-    * Department of Computer Science and Engineering, International Islamic University Chittagong (IIUC), Chittagong, Bangladesh
-    * Email: [khalil@iiuc.ac.bd](mailto:khalil@iiuc.ac.bd)
-* **Dr. Abu Nowshed Chy**
-    * Assistant Professor
-    * Department of Computer Science & Engineering, University of Chittagong (CU), Chittagong, Bangladesh
-    * Email: [nowshed@cu.ac.bd](mailto:nowshed@cu.ac.bd)
+* **Dr. Md. Khaliluzzaman** — Associate Professor, Department of CSE, International Islamic University Chittagong (IIUC) (`khalil@iiuc.ac.bd`)
+* **Dr. Abu Nowshed Chy** — Assistant Professor, Department of CSE, University of Chittagong (CU) (`nowshed@cu.ac.bd`)

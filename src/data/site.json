@@ -12,7 +12,8 @@
     "github": "https://github.com/tahmidulferdous",
     "linkedin": "https://www.linkedin.com/in/tahmidul-kashfi",
     "scholar": "https://scholar.google.com/citations?user=RqWBgxYAAAAJ",
-    "orcid": "https://orcid.org/0009-0001-1459-4124"
+    "orcid": "https://orcid.org/0009-0001-1459-4124",
+    "wandb": "https://forge.coreweave.com/wandb/tahmidulkashfi15-international-islamic-university-chittagong/projects"
   },
   "sections": [
     {
@@ -41,5 +42,5 @@
       "enabled": true
     }
   ],
-  "cv_pdf": "/files/CV_Tahmidul_Bin_Ferdous.pdf"
+  "cv_pdf": "/files/academic_cv_tahmidul.pdf"
 }
